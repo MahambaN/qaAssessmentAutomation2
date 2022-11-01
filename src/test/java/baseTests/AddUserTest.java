@@ -1,8 +1,10 @@
 package baseTests;
 
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.AddUserPage;
+import pages.HomePage;
 
 public class AddUserTest extends BaseTest {
 
@@ -18,7 +20,12 @@ public class AddUserTest extends BaseTest {
         addUserPage.setPassword(Password);
         addUserPage.setEmail(EmailAddress);
         addUserPage.setCellPhoneNumber(CellphoneNumber);
+        addUserPage.clickRadioButton();
         //addUserPage.selectOption1RadioButton(CompanyRadioButton);
+        addUserPage.selectValue1DropDown();
+
+        //HomePage homePage = addUserPage.clickOnSaveButton();
+
     }
 
     @DataProvider()

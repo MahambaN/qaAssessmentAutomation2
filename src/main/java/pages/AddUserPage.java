@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class AddUserPage {
 
@@ -13,10 +14,10 @@ public class AddUserPage {
     private By passwordField = By.cssSelector("input[name='Password']");
     private By emailField = By.cssSelector("input[name='Email']");
     private By cellPhoneField = By.cssSelector("input[name='Mobilephone']");
-    //private By option1RadioButton = By.cssSelector("input[type='radio'][value='15']");
+    private By option1RadioButton = By.cssSelector("input[type='radio'][value='15']");
     //private By option2RadioButton = By.cssSelector("input[type='radio'][value='16']");
-    //private By roleDropDownList = By.xpath("//[@select='RoleId']");
-    //private By clickSaveButton = By.xpath("button[ng-click='save(user)']");
+    private By role1DropDownList = By.cssSelector("select[name='RoleId']");
+    private By saveButton = By.xpath("button[ng-click='save(user)']");
 
     public AddUserPage(WebDriver driver){
         this.driver = driver;
@@ -42,9 +43,22 @@ public class AddUserPage {
         driver.findElement(emailField).sendKeys(email);
         //driver.findElement(emailField).sendKeys(email);
     }
-
     public void setCellPhoneNumber(String phone){
      driver.findElement(cellPhoneField).sendKeys(phone);
    }
+
+   public void clickRadioButton(){
+        driver.findElement(option1RadioButton).click();
+   }
+
+   public void selectValue1DropDown(){
+        Select dropdown = new Select(driver.findElement(role1DropDownList));
+        dropdown.selectByVisibleText("Sales Team");
+   }
+
+   public HomePage clickOnSaveButton(){
+        driver.findElement(saveButton).click();
+        return new HomePage(driver);
+           }
 
 }
